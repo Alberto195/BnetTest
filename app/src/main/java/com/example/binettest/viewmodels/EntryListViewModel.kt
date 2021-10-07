@@ -49,7 +49,7 @@ class EntryListViewModel(
                         }
 
                         override fun onNext(t: GetEntriesModel?) {
-                            entry = t
+                            if (t?.status != 0) entry = t
                         }
                     })
             )

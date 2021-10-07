@@ -41,19 +41,15 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="70dp"
             android:layout_marginStart="50dp"
-            android:layout_marginEnd="70dp"
-
-            style="" />
+            android:layout_marginEnd="70dp" />
 
         <Button
             android:id="@+id/back"
 
-            android:text="@string/cancel"
+            android:text="@string/clear"
 
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            style="" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

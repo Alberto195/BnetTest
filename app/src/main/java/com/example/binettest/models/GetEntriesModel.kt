@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class GetEntriesModel(
     @SerializedName("data")
-    val `data`: List<List<Data>>,
+    val `data`: List<List<Data>>?,
     @SerializedName("status")
     val status: Int
 ) {

@@ -10,14 +10,16 @@ class BnetRepository (
     private val appPreference: IAppPreference
 ) : IBnetRepository {
 
-    override fun getSessionValueApi(): String {
+    override fun getSessionValueApi(): String? {
         val call = api.getSession("new_session")
-        return call.execute().body()!!.data.session
+        return call.execute().body()?.data?.session
     }
 
-    override fun getEntry(): GetEntriesModel {
+    override fun getEntry(): GetEntriesModel? {
         val call = api.getEntries("get_entries", appPreference.getSessionValue()!!)
-        return call.execute().body()!!
+        val result = call.execute()
+        val ret = result.body()
+        return ret
     }
 
     override fun addEntry(body: String) {

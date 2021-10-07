@@ -39,7 +39,9 @@ class EntryListFragment: BaseFragment<
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         listAdapter = EntryListAdapter(this)
+
         binding.recycler.apply {
             layoutManager = GridLayoutManager(context, 1)
             adapter = listAdapter
@@ -64,7 +66,7 @@ class EntryListFragment: BaseFragment<
     }
 
     private fun showList() {
-        viewModel.getEntry()?.let { listAdapter.setList(mutableListOf(it)) }
+        viewModel.getEntry()?.let { listAdapter.setList(it) }
         binding.recycler.adapter = listAdapter
     }
 

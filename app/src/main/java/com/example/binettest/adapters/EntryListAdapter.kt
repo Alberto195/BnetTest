@@ -13,7 +13,7 @@ class EntryListAdapter(
     private val listener: EntryHolder.Listener
     ): RecyclerView.Adapter<EntryListAdapter.EntryHolder>() {
 
-    private var entryList = emptyList<GetEntriesModel>()
+    private var entryList = GetEntriesModel(null, 0)
 
     class EntryHolder(
         view: View,
@@ -32,8 +32,6 @@ class EntryListAdapter(
         fun bind(dateAdded: String, dateModified: String, bodyText: String) {
             if(dateAdded != dateModified) {
                 dateEntryModified.text = dateModified
-            } else {
-                dateEntryModified.text = ""
             }
 
             dateEntryAdded.text = dateAdded
@@ -52,24 +50,24 @@ class EntryListAdapter(
     }
 
     override fun onBindViewHolder(holder: EntryHolder, position: Int) {
-        if(entryList[0].data[0].isNotEmpty()) {
+        if(entryList.data!![0].isNotEmpty()) {
             holder.bind(
-                entryList[0].data[0][position].da,
-                entryList[0].data[0][position].dm,
-                entryList[0].data[0][position].body
+                entryList.data!![0][position].da,
+                entryList.data!![0][position].dm,
+                entryList.data!![0][position].body
             )
         }
     }
 
     override fun getItemCount(): Int {
-        return if(entryList.isNotEmpty()) {
-            entryList[0].data[0].size
+        return if (entryList.data != null) {
+            entryList.data!![0].size
         } else {
             0
         }
     }
 
-    fun setList(list: List<GetEntriesModel>) {
+    fun setList(list: GetEntriesModel) {
         entryList = list
         notifyDataSetChanged()
     }

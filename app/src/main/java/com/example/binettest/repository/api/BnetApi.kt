@@ -3,7 +3,10 @@ package com.example.binettest.repository.api
 import com.example.binettest.models.AddEntryModel
 import com.example.binettest.models.BnetNewSessionModel
 import com.example.binettest.models.GetEntriesModel
+import com.google.gson.GsonBuilder
 import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
