@@ -26,15 +26,15 @@ class WholeEntryFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getBundle()
-        binding.da.text = viewModel.dateAdded
-        binding.dm.text = viewModel.dateModified
-        binding.bodyContent.text = viewModel.bodyText
+        binding.da.text = viewModel.getDA()
+        binding.dm.text = viewModel.getDM()
+        binding.bodyContent.text = viewModel.getText()
     }
 
     private fun getBundle() {
-        viewModel.dateAdded = requireArguments().getString("dateAdded")
-        viewModel.dateModified = requireArguments().getString("dateModified")
-        viewModel.bodyText = requireArguments().getString("bodyText")
+        viewModel.setDA(requireArguments().getString("dateAdded"))
+        viewModel.setDM(requireArguments().getString("dateModified"))
+        viewModel.setText(requireArguments().getString("bodyText"))
 
     }
 }
