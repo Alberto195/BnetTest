@@ -12,9 +12,9 @@
         tools:layout="@layout/add_entry_fragment" />
     <fragment
         android:id="@+id/entryListFragment"
-        android:name="com.example.binettest.ui.EntryListFragment"
+        android:name="com.example.binettest.presentation.entry_list.ui.EntryListFragment"
         android:label="Список записей"
-        tools:layout="@layout/entry_list_fragment" >
+        tools:layout="@layout/fragment_entry_list" >
         <action
             android:id="@+id/action_entryListFragment_to_wholeEntryFragment"
             app:destination="@id/wholeEntryFragment" />
