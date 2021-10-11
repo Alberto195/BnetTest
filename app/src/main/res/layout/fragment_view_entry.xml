@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.binettest.presentation.add_entry.ui.AddEntryFragment"
+    tools:context="com.example.binettest.presentation.view_entry.ui.AddEntryFragment"
     android:orientation="vertical">
 
     <EditText
