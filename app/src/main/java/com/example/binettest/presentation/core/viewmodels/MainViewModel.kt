@@ -3,7 +3,7 @@ package com.example.binettest.presentation.core.viewmodels
 import android.util.Log
 import com.example.binettest.domain.core.models.UserSessionId
 import com.example.binettest.domain.core.usecases.GetUserSessionIdUseCase
-import com.example.binettest.domain.core.usecases.GetSessionValueUseCase
+import com.example.binettest.domain.core.usecases.GetNewSessionValueUseCase
 import com.example.binettest.domain.core.usecases.SetUserSessionUseCase
 import com.example.binettest.presentation.base.viewmodel.BaseViewModel
 import com.example.binettest.presentation.base.viewstate.BaseViewState
@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class MainViewModel(
         private val getUserSessionIdUseCase: GetUserSessionIdUseCase,
         private val setUserSessionUseCase: SetUserSessionUseCase,
-        private val getSessionValueUseCase: GetSessionValueUseCase
+        private val getSessionValueUseCase: GetNewSessionValueUseCase
 ): BaseViewModel<BaseViewState<*>, ActivityAction>() {
 
     companion object {

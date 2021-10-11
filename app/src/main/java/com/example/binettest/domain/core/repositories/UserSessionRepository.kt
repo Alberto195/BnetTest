@@ -4,6 +4,10 @@ import com.example.binettest.domain.core.models.UserSessionId
 
 interface UserSessionRepository {
 
-    fun getUserSessionId(): UserSessionId?
+    fun getNewUserSessionId(): UserSessionId?
+
+    fun getStorageSessionId(): UserSessionId?
+
+    fun setStorageSessionValue(userSessionId: UserSessionId?)
 
 }

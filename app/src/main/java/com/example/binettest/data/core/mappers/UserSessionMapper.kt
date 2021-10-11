@@ -5,7 +5,7 @@ import com.example.binettest.domain.core.models.UserSessionId
 
 class UserSessionMapper {
 
-    fun toUserSessionId(sessionData: UserSessionDataModel?): UserSessionId {
+    fun userSessionDataModelToUserSessionId(sessionData: UserSessionDataModel?): UserSessionId {
         return UserSessionId(
                 sessionId = sessionData?.data?.session
         )
