@@ -5,6 +5,7 @@ import com.example.binettest.presentation.base.viewmodel.BaseViewModel
 import com.example.binettest.domain.entry_list.models.EntryListModel
 import com.example.binettest.domain.entry_list.repositories.EntryRepository
 import com.example.binettest.domain.entry_list.usecases.GetEntryListUseCase
+import com.example.binettest.domain.entry_list.usecases.SetViewEntryUseCase
 import com.example.binettest.presentation.entry_list.action.EntryListAction
 import com.example.binettest.presentation.entry_list.viewstate.EntryListViewState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -13,7 +14,8 @@ import io.reactivex.rxjava3.observers.DisposableObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class EntryListViewModel(
-        private val entryListUseCase: GetEntryListUseCase
+        private val entryListUseCase: GetEntryListUseCase,
+        private val setViewEntry: SetViewEntryUseCase
 ) : BaseViewModel<EntryListAction, EntryListViewState>() {
 
     companion object {
@@ -59,6 +61,10 @@ class EntryListViewModel(
 
     fun getEntry(): List<EntryListModel?>? {
         return entry
+    }
+
+    fun setViewEntry(entry: EntryListModel?) {
+        setViewEntry.execute(entry)
     }
 
     private fun getObservable(): Observable<List<EntryListModel?>> {

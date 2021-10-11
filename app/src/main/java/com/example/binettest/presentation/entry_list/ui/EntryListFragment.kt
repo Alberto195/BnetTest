@@ -24,7 +24,8 @@ class EntryListFragment : BaseFragment<
         >() {
     private val listAdapter: EntryListAdapter = EntryListAdapter().apply {
         onItemClick = {
-            goWholeEntryFragment(it?.dateAdded, it?.dateModified, it?.entryText)
+            viewModel.setViewEntry(it)
+            goWholeEntryFragment()
         }
     }
 
@@ -69,12 +70,7 @@ class EntryListFragment : BaseFragment<
         viewModel.getEntry()?.let { listAdapter.setList(it) }
     }
 
-    private fun goWholeEntryFragment(dateAdded: String?, dateModified: String?, bodyText: String?) {
-        val bundle = Bundle()
-        bundle.putString("dateAdded", dateAdded)
-        bundle.putString("dateModified", dateModified)
-        bundle.putString("bodyText", bodyText)
-
-        findNavController().navigate(R.id.action_entryListFragment_to_wholeEntryFragment, bundle)
+    private fun goWholeEntryFragment() {
+        findNavController().navigate(R.id.action_entryListFragment_to_wholeEntryFragment)
     }
 }
