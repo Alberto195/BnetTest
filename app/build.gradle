@@ -92,4 +92,9 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1")
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+
+    //room
+    implementation "androidx.room:room-ktx:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
 }

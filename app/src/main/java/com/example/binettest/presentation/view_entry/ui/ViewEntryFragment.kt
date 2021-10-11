@@ -4,37 +4,50 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.binettest.databinding.WholeEntryFragmentBinding
-import com.example.binettest.viewmodels.WholeEntryViewModel
+import com.example.binettest.databinding.FragmentViewEntryBinding
+import com.example.binettest.presentation.base.ui.BaseFragment
+import com.example.binettest.presentation.base.viewstate.BaseViewState
+import com.example.binettest.presentation.view_entry.actions.ViewEntryAction
+import com.example.binettest.presentation.view_entry.viewmodels.ViewEntryViewModel
+import kotlin.reflect.KClass
 
-class ViewEntryFragment: Fragment() {
+class ViewEntryFragment : BaseFragment<
+        BaseViewState<*>,
+        ViewEntryAction,
+        ViewEntryViewModel,
+        FragmentViewEntryBinding
+        >() {
 
-    private lateinit var binding: WholeEntryFragmentBinding
-    private val viewModel = WholeEntryViewModel()
+    override fun getViewModelClass(): KClass<ViewEntryViewModel> = ViewEntryViewModel::class
+
+    override fun getBinding(
+            inflater: LayoutInflater,
+            container: ViewGroup?
+    ): FragmentViewEntryBinding =
+            FragmentViewEntryBinding.inflate(
+                    inflater,
+                    container,
+                    false
+            )
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
-        binding = WholeEntryFragmentBinding
-            .inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getBundle()
-        binding.da.text = viewModel.getDA()
-        binding.dm.text = viewModel.getDM()
-        binding.bodyContent.text = viewModel.getText()
     }
 
     private fun getBundle() {
-        viewModel.setDA(requireArguments().getString("dateAdded"))
-        viewModel.setDM(requireArguments().getString("dateModified"))
-        viewModel.setText(requireArguments().getString("bodyText"))
 
+    }
+
+    override fun render(viewState: BaseViewState<*>) {
     }
 }

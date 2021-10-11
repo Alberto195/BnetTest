@@ -1,4 +1,7 @@
 package com.example.binettest.domain.view_entry.models
 
-class EntryDetailsModel {
-}
+data class EntryDetailsModel(
+        val dateAdded: String?,
+        val dateModified: String?,
+        val bodyText: String?
+)

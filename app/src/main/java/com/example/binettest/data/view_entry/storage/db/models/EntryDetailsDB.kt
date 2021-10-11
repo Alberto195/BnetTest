@@ -1,4 +1,4 @@
-package com.example.binettest.data.view_entry.storage.db
+package com.example.binettest.data.view_entry.storage.db.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,13 +1,13 @@
 package com.example.binettest.domain.view_entry.usecases
 
-import com.example.binettest.domain.view_entry.models.AddEntryModel
-import com.example.binettest.domain.view_entry.repositories.AddEntryRepository
+import com.example.binettest.domain.view_entry.models.EntryDetailsModel
+import com.example.binettest.domain.view_entry.repositories.ViewEntryRepository
 
-class AddEntryUseCase(
-        private val repository: AddEntryRepository
+class GetEntryDetailsUseCase(
+        private val repository: ViewEntryRepository
 ) {
 
-    fun execute(addEntryModel: AddEntryModel) {
-        return repository.addEntry(addEntryModel)
+    fun execute(): EntryDetailsModel {
+        return repository.getEntryDetails()
     }
 }

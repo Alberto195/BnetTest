@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.multitrantest.model.HistoryModel
+import com.example.binettest.data.view_entry.storage.db.models.EntryDetailsDB
 
-@Database(entities = [HistoryModel::class], version = 2)
+@Database(entities = [EntryDetailsDB::class], version = 1)
 abstract class RoomDataBase : RoomDatabase() {
 
     abstract fun getRoomDao(): RoomDao

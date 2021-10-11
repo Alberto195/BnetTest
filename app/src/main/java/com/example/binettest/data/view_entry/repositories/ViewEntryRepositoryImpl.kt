@@ -1,20 +1,35 @@
 package com.example.binettest.data.view_entry.repositories
 
-import com.example.binettest.data.view_entry.api_service.AddApi
-import com.example.binettest.data.view_entry.storage.UserStorage
-import com.example.binettest.domain.view_entry.models.AddEntryModel
+import com.example.binettest.data.view_entry.storage.UserStorageEntry
+import com.example.binettest.data.view_entry.storage.models.WholeEntry
+import com.example.binettest.domain.view_entry.models.EntryDetailsModel
 import com.example.binettest.domain.view_entry.repositories.ViewEntryRepository
 
-class AddEntryRepositoryImpl(
-        private val api: AddApi,
-        private val userStorage: UserStorage
+class ViewEntryRepositoryImpl(
+        private val userStorage: UserStorageEntry
 ) : ViewEntryRepository {
 
-    override fun addEntry(addEntry: AddEntryModel) {
-        api.addEntry(
-                a = "add_entry",
-                session = userStorage.getSessionValue()?.sessionId,
-                body = addEntry.bodyText
+    override fun getEntryDetails(): EntryDetailsModel {
+        return mapToDomain(userStorage.getWholeEntry())
+    }
+
+    override fun deleteEntry(entry: EntryDetailsModel) {
+        userStorage.deleteEntry(entry = mapToStorage(entry))
+    }
+
+    private fun mapToDomain(entry: WholeEntry): EntryDetailsModel {
+        return EntryDetailsModel(
+            dateAdded = entry.dateAdded,
+            dateModified = entry.dateModified,
+            bodyText = entry.bodyText
+        )
+    }
+
+    private fun mapToStorage(entry: EntryDetailsModel): WholeEntry {
+        return WholeEntry(
+            dateAdded = entry.dateAdded,
+            dateModified = entry.dateModified,
+            bodyText = entry.bodyText
         )
     }
 }

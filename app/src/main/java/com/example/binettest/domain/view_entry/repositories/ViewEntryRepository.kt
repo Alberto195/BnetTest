@@ -1,8 +1,10 @@
 package com.example.binettest.domain.view_entry.repositories
 
-import com.example.binettest.domain.view_entry.models.AddEntryModel
+import com.example.binettest.domain.view_entry.models.EntryDetailsModel
 
-interface AddEntryRepository {
+interface ViewEntryRepository {
 
-    fun show(addEntry: AddEntryModel)
+    fun getEntryDetails(): EntryDetailsModel
+
+    fun deleteEntry(entry: EntryDetailsModel)
 }
