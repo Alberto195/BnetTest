@@ -1,7 +1,8 @@
-package com.example.binettest.domain.add_entry.repositories
+package com.example.binettest.data.storage
 
 import com.example.binettest.domain.add_entry.models.UserSessionId
 
-interface AppPreference {
+interface UserStorage {
+
     fun getSessionValue(): UserSessionId?
 }
