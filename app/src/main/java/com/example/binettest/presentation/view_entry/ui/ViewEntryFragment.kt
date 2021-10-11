@@ -41,11 +41,15 @@ class ViewEntryFragment : BaseFragment<
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getBundle()
+        setTexts()
     }
 
-    private fun getBundle() {
-
+    private fun setTexts() {
+        viewModel.getWholeEntry().let {
+            binding.da.text = it.dateAdded
+            binding.dm.text = it.dateModified
+            binding.bodyContent.text = it.bodyText
+        }
     }
 
     override fun render(viewState: BaseViewState<*>) {
