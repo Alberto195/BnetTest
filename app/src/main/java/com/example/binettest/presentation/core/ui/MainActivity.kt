@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if(viewModel.getSession() == "") {
+        if(viewModel.getSession()?.sessionId == "") {
             viewModel.setSession()
         }
 

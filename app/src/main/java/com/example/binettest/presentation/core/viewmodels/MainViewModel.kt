@@ -1,29 +1,30 @@
 package com.example.binettest.presentation.core.viewmodels
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import com.example.binettest.domain.entry_list.repositories.IBnetRepository
-import com.example.binettest.domain.entry_list.repositories.IAppPreference
+import com.example.binettest.domain.core.models.UserSessionId
+import com.example.binettest.domain.core.usecases.GetUserSessionIdUseCase
+import com.example.binettest.domain.core.usecases.GetSessionValueUseCase
+import com.example.binettest.domain.core.usecases.SetUserSessionUseCase
 import com.example.binettest.presentation.base.viewmodel.BaseViewModel
 import com.example.binettest.presentation.base.viewstate.BaseViewState
 import com.example.binettest.presentation.core.action.ActivityAction
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainViewModel(
-        private val repository: IBnetRepository,
-        private val appPreference: IAppPreference
-): BaseViewModel<BaseViewState<String>, ActivityAction>() {
+        private val getUserSessionIdUseCase: GetUserSessionIdUseCase,
+        private val setUserSessionUseCase: SetUserSessionUseCase,
+        private val getSessionValueUseCase: GetSessionValueUseCase
+): BaseViewModel<BaseViewState<*>, ActivityAction>() {
 
     companion object {
         private const val TAG = "MainViewModel"
     }
 
-    fun getSession(): String? {
-        return appPreference.getSessionValue()
+    fun getSession(): UserSessionId? {
+        return getUserSessionIdUseCase.execute()
     }
 
     fun setSession() {
@@ -32,7 +33,7 @@ class MainViewModel(
                 getObservable()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(object : DisposableObserver<String>() {
+                    .subscribeWith(object : DisposableObserver<UserSessionId>() {
                         override fun onComplete() {
                             Log.e(TAG, "onComplete()")
                         }
@@ -41,11 +42,10 @@ class MainViewModel(
                             Log.e(TAG, "onError()", e)
                         }
 
-                        override fun onNext(t: String?) {
+                        override fun onNext(t: UserSessionId?) {
                             Log.e(TAG, "onNext")
-                            if (t != null) {
-                                appPreference.setSessionValue(t)
-                            }
+                                setUserSessionUseCase.execute(t)
+
                         }
                     })
             )
@@ -54,12 +54,11 @@ class MainViewModel(
         }
     }
 
-    private fun getObservable(): Observable<String> {
+    private fun getObservable(): Observable<UserSessionId> {
         return Observable.defer {
-            Observable.just(repository.getSessionValueApi())
+            Observable.just(getSessionValueUseCase.execute())
         }
     }
 
-    override fun handleAction(action: BaseViewState<String>) {
-    }
+    override fun handleAction(action: BaseViewState<*>) {}
 }

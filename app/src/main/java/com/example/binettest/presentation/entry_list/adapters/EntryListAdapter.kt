@@ -8,16 +8,16 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.binettest.R
 import com.example.binettest.data.entry_list.models.EntryDataListModel
+import com.example.binettest.domain.entry_list.models.EntryListModel
 
 class EntryListAdapter(
-    private val listener: EntryHolder.Listener
     ): RecyclerView.Adapter<EntryListAdapter.EntryHolder>() {
 
-    private var entryList = EntryDataListModel(null, 0)
+    private var entryList = emptyList<EntryListModel?>()
+    var onItemClick: ((EntryListModel?) -> Unit)? = null
 
-    class EntryHolder(
-        view: View,
-        private val listener: Listener
+    inner class EntryHolder(
+        view: View
     ) : RecyclerView.ViewHolder(view) {
 
         private val dateEntryAdded: TextView = view.findViewById(R.id.date_added)
@@ -25,49 +25,41 @@ class EntryListAdapter(
         private val body: TextView = view.findViewById(R.id.body)
         private val cardView: CardView = view.findViewById(R.id.entry_item)
 
-        interface Listener {
-            fun onClick(dateAdded: String, dateModified: String, bodyText: String)
+        init {
+            cardView.setOnClickListener {
+                onItemClick?.invoke(entryList[adapterPosition])
+            }
         }
 
-        fun bind(dateAdded: String, dateModified: String, bodyText: String) {
-            if(dateAdded != dateModified) {
+        fun bind(dateAdded: String?, dateModified: String?, bodyText: String?) {
+            if (dateAdded != dateModified) {
                 dateEntryModified.text = dateModified
             }
-
             dateEntryAdded.text = dateAdded
-            body.text = bodyText.take(200)
-
-            cardView.setOnClickListener {
-                listener.onClick(dateAdded, dateModified, bodyText)
-            }
+            body.text = bodyText?.take(200)
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item, parent, false)
-        return EntryHolder(view, listener)
+        return EntryHolder(view)
     }
 
     override fun onBindViewHolder(holder: EntryHolder, position: Int) {
-        if(entryList.data!![0].isNotEmpty()) {
-            holder.bind(
-                entryList.data!![0][position].da,
-                entryList.data!![0][position].dm,
-                entryList.data!![0][position].body
-            )
-        }
+        holder.bind(
+            entryList[position]?.dateAdded,
+            entryList[position]?.dateModified,
+            entryList[position]?.entryText
+        )
     }
 
     override fun getItemCount(): Int {
-        return if (entryList.data != null) {
-            entryList.data!![0].size
-        } else {
-            0
-        }
+        return entryList.size
     }
 
-    fun setList(list: EntryDataListModel) {
+    fun setList(list: List<EntryListModel?>) {
         entryList = list
         notifyDataSetChanged()
     }

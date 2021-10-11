@@ -1,4 +1,4 @@
-package com.example.binettest.data.entry_list.api_service
+package com.example.binettest.data.core.api_service
 
 import android.annotation.SuppressLint
 import com.google.gson.GsonBuilder
@@ -14,10 +14,10 @@ import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-object RetrofitInstance {
+object RetrofitUserSession {
     private const val BASE_URL = "https://bnet.i-partner.ru/"
 
-    val retrofitInstance: EntryApi?
+    val retrofitInstance: SessionApi?
         get() {
             val gson = GsonBuilder()
                     .setLenient()
@@ -28,7 +28,7 @@ object RetrofitInstance {
                     .client(getUnsafeOkHttpClient())
                     .baseUrl(BASE_URL)
                     .build()
-                    .create(EntryApi::class.java)
+                    .create(SessionApi::class.java)
         }
 
     private fun getUnsafeOkHttpClient(): OkHttpClient {
