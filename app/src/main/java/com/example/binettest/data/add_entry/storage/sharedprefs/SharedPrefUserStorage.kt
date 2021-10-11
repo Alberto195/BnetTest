@@ -1,7 +1,7 @@
-package com.example.binettest.data.storage.sharedprefs
+package com.example.binettest.data.add_entry.storage.sharedprefs
 
 import android.content.Context
-import com.example.binettest.data.storage.UserStorage
+import com.example.binettest.data.add_entry.storage.UserStorage
 import com.example.binettest.domain.add_entry.models.UserSessionId
 
 class SharedPrefUserStorage(

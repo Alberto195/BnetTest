@@ -1,4 +1,4 @@
-package com.example.binettest.data.api_service
+package com.example.binettest.data.add_entry.api_service
 
 import android.annotation.SuppressLint
 import com.google.gson.GsonBuilder

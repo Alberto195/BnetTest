@@ -1,9 +1,9 @@
-package com.example.binettest.data.di
+package com.example.binettest.data.add_entry.di
 
-import com.example.binettest.data.api_service.AddApi
-import com.example.binettest.data.api_service.AddEntryRetrofit
-import com.example.binettest.data.repositories.AddEntryRepositoryImpl
-import com.example.binettest.data.repositories.AppPreferenceImpl
+import com.example.binettest.data.add_entry.api_service.AddApi
+import com.example.binettest.data.add_entry.api_service.AddEntryRetrofit
+import com.example.binettest.data.add_entry.repositories.AddEntryRepositoryImpl
+import com.example.binettest.data.add_entry.repositories.AppPreferenceImpl
 import com.example.binettest.domain.add_entry.repositories.AddEntryRepository
 import com.example.binettest.domain.add_entry.repositories.AppPreference
 import org.koin.android.ext.koin.androidContext

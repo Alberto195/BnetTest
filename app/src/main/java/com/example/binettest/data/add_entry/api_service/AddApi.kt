@@ -1,6 +1,6 @@
-package com.example.binettest.data.api_service
+package com.example.binettest.data.add_entry.api_service
 
-import com.example.binettest.data.models.AddEntryDataModel
+import com.example.binettest.data.add_entry.models.AddEntryDataModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

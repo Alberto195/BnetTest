@@ -1,7 +1,7 @@
-package com.example.binettest.data.repositories
+package com.example.binettest.data.add_entry.repositories
 
-import com.example.binettest.data.api_service.AddApi
-import com.example.binettest.data.storage.UserStorage
+import com.example.binettest.data.add_entry.api_service.AddApi
+import com.example.binettest.data.add_entry.storage.UserStorage
 import com.example.binettest.domain.add_entry.models.AddEntryModel
 import com.example.binettest.domain.add_entry.repositories.AddEntryRepository
 

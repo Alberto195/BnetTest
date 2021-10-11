@@ -1,4 +1,4 @@
-package com.example.binettest.data.models
+package com.example.binettest.data.add_entry.models
 
 import com.google.gson.annotations.SerializedName
 
