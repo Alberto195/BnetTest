@@ -20,7 +20,7 @@ val entryListDataApiModule: Module = module {
 }
 
 val entryListDataRepositoryModule: Module = module {
-    single<EntryRepository> { EntryRepositoryImpl(get(), get(), get()) }
+    single<EntryRepository> { EntryRepositoryImpl(get(), get(), get(), get()) }
 
     single<RoomDataBase> { RoomDataBase.getInstance(androidContext()) }
 

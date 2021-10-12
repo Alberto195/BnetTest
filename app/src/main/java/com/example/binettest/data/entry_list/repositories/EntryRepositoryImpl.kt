@@ -21,16 +21,16 @@ class EntryRepositoryImpl (
         return entryListMapper.toEntryListModel(call?.execute()?.body())
     }
 
-    override fun setEntry(entry: EntryListModel) {
+    override fun setEntry(entry: EntryListModel?) {
         userStorageDB.setEntry(mapToStorageDB(entry))
     }
 
-    private fun mapToStorageDB(entry: EntryListModel): EntryDetailsDB {
+    private fun mapToStorageDB(entry: EntryListModel?): EntryDetailsDB {
         return EntryDetailsDB(
             id = 0,
-            dateAdded = entry.dateAdded,
-            dateModified = entry.dateModified,
-            bodyText = entry.entryText
+            dateAdded = entry?.dateAdded,
+            dateModified = entry?.dateModified,
+            bodyText = entry?.entryText
         )
     }
 }
