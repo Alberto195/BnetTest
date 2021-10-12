@@ -7,7 +7,7 @@ import com.example.binettest.domain.core.usecases.GetNewSessionValueUseCase
 import com.example.binettest.domain.core.usecases.SetUserSessionUseCase
 import com.example.binettest.presentation.base.viewmodel.BaseViewModel
 import com.example.binettest.presentation.base.viewstate.BaseViewState
-import com.example.binettest.presentation.core.action.ActivityAction
+import com.example.binettest.presentation.core.actions.ActivityAction
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.DisposableObserver
