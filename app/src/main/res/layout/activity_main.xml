@@ -8,7 +8,7 @@
 
     android:orientation="vertical"
 
-    tools:context="com.example.binettest.MainActivity">
+    tools:context="com.example.binettest.presentation.core.ui.MainActivity">
 
     <fragment
         android:id="@+id/fragment_container"
