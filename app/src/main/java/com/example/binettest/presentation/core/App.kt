@@ -1,8 +1,7 @@
 package com.example.binettest.presentation.core
 
 import android.app.Application
-import com.example.binettest.data.core.di.*
-import com.example.binettest.data.entry_list.di.*
+import com.example.binettest.data.di.*
 import com.example.binettest.presentation.core.di.coreUseCasesModule
 import com.example.binettest.presentation.core.di.coreViewModelModule
 import com.example.binettest.presentation.entry_list.di.entryListUseCasesModule
