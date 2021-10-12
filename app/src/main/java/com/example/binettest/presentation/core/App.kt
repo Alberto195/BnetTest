@@ -1,10 +1,11 @@
 package com.example.binettest.presentation.core
 
 import android.app.Application
-import com.example.binettest.data.view_entry.di.addEntryApiModule
-import com.example.binettest.data.view_entry.di.addEntryRepositoryModule
-import com.example.binettest.presentation.view_entry.di.addEntryUseCaseModule
-import com.example.binettest.presentation.view_entry.di.addEntryViewModelModule
+import com.example.binettest.data.di.*
+import com.example.binettest.presentation.core.di.coreUseCasesModule
+import com.example.binettest.presentation.core.di.coreViewModelModule
+import com.example.binettest.presentation.entry_list.di.entryListUseCasesModule
+import com.example.binettest.presentation.entry_list.di.entryListViewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -19,12 +20,21 @@ class App : Application() {
             androidContext(this@App)
             androidFileProperties()
             modules(
-                    listOf(
-                            addEntryRepositoryModule,
-                            addEntryApiModule,
-                            addEntryViewModelModule,
-                            addEntryUseCaseModule,
-                    )
+                listOf(
+                        coreApiModule,
+                        coreRepositoryModule,
+                        coreDataMapperModule,
+                        coreViewModelModule,
+                        coreUseCasesModule,
+                        coreStorageModule,
+
+                        entryListViewModelModule,
+                        entryListUseCasesModule,
+                        entryListDataApiModule,
+                        entryListDataMapperModule,
+                        entryListDataRepositoryModule,
+                        entryListStorageModule
+                )
             )
         }
 
